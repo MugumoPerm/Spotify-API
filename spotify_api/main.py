@@ -57,11 +57,23 @@ def get_songs_by_artist(token, artist_id):
     json_result = json.loads(result.content)["tracks"]
     return json_result
 
+def get_available_genre(token):
+    url = f"https://api.spotify.com/v1/recommendations/available-genre-seeds"
+    headers = get_auth_header(token)
+    result = get(url, headers=headers)
+    json_result = json.loads(result.content)
+
+    return json_result
+
+
 
 token = get_token()
+#genre
+gen = get_available_genre(token)
+print(gen)
 
+#artist
 results = search_for_artist(token, "quavo")
-
 artist_id = results["id"]
 artist_name = results["name"]
 
@@ -70,6 +82,7 @@ songs = get_songs_by_artist(token, artist_id)
 
 for idx, song in enumerate(songs):
     print(f"{idx + 1}. {song['name']}")
+
 
 
 
