@@ -42,9 +42,17 @@ def search_for_artist(token, artist_name):
     query_url = url + query
 
     result = get(query_url, headers=headers)
-    json_result = json.loads(result.content)
-    print(json_result)
+    json_result = json.loads(result.content)["artists"]["items"]
+
+    if len(json_result) == 0:
+        print("No artist found")
+        return None
+    else:
+        return json_result[0]
+
 
 token = get_token()
 
-search_for_artist(token, "quavo")
+results = search_for_artist(token, "quavo")
+
+print(results["name"])
