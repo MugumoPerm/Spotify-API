@@ -70,7 +70,8 @@ def get_available_genre(token):
 token = get_token()
 #genre
 gen = get_available_genre(token)
-print(gen)
+for idx, genre in enumerate(gen["genres"]):
+    print(f"{idx + 1}. {genre}")
 
 #artist
 results = search_for_artist(token, "quavo")
@@ -79,7 +80,10 @@ artist_name = results["name"]
 
 #songs
 songs = get_songs_by_artist(token, artist_id)
-
+print("")
+print("")
+print("songs")
+print("")
 for idx, song in enumerate(songs):
     print(f"{idx + 1}. {song['name']}")
 
