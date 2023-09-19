@@ -80,10 +80,6 @@ artist_name = results["name"]
 
 #songs
 songs = get_songs_by_artist(token, artist_id)
-print("")
-print("")
-print("songs")
-print("")
 for idx, song in enumerate(songs):
     print(f"{idx + 1}. {song['name']}")
 
